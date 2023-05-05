@@ -9,29 +9,29 @@ import Customers from './components/Customers';
 import Trainings from './components/Trainings';
 
 function App() {
+
+  //NavLink styling function
+  function getNavLinkStyle(isActive) {
+    return {
+      fontWeight: isActive ? "bold" : "",
+      color: isActive ? "red" : "black"
+    };
+  }
+
+  //Return React render
   return (
     <div className="App">
       <BrowserRouter>
         <NavLink
           to="/"
-          style={({ isActive, isPending }) => {
-            return {
-              fontWeight: isActive ? "bold" : "",
-              color: isPending ? "red" : "black",
-            };
-          }}
+          style={props => getNavLinkStyle(props.isActive)}
         >
           Customers
         </NavLink>{' '}
 
         <NavLink
         to="/trainings"
-        style={({ isActive, isPending }) => {
-          return {
-            fontWeight: isActive ? "bold" : "",
-            color: isPending ? "red" : "black",
-          };
-        }}
+        style={props => getNavLinkStyle(props.isActive)}
         >
           Trainings
         </NavLink>{' '}
