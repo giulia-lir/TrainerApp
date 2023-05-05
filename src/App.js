@@ -14,7 +14,13 @@ function App() {
   function getNavLinkStyle(isActive) {
     return {
       fontWeight: isActive ? "bold" : "",
-      color: isActive ? "red" : "black"
+      color: isActive ? "#ff6347" : "#333",
+      textDecoration: "none",
+      padding: "0.5rem",
+      margin: "0 0.5rem",
+      fontSize: "1rem",
+      transition: "all 0.2s",
+      borderBottom: isActive ? "2px solid #ff6347" : ""
     };
   }
 

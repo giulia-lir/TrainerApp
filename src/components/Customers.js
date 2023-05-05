@@ -13,13 +13,11 @@ export default function Customers() {
 
     // AG-Grid columns defined
     const [columnDefs] = useState([
-        {field: 'firstname', sortable: true, filter: true},
-        {field: 'lastname', sortable: true, filter: true},
-        {field: 'streetaddress', sortable: true, filter: true},
-        {field: 'postcode', sortable: true, filter: true},
-        {field: 'city', sortable: true, filter: true},
-        {field: 'email', sortable: true, filter: true},
-        {field: 'phone', sortable: true, filter: true}
+        {field: 'firstname', headerName: 'Firstname', sortable: true, filter: true},
+        {field: 'lastname', headerName: 'Lastname', sortable: true, filter: true},
+        {field: 'address', headerName: 'Address', minWidth: 300, sortable: true, filter: true},
+        {field: 'email', headerName: 'Email', sortable: true, filter: true},
+        {field: 'phone', headerName: 'Phone Number', sortable: true, filter: true}
     ]);
 
     // Fetching customers data & error handling
@@ -34,12 +32,16 @@ export default function Customers() {
             }
         })
         .then(data => {
-           setCustomers(data.content)
+            // Data manipulation to concatenate streetaddress, postcode and city in one string
+            const dataWithFullAddress = data.content.map(
+                d => (
+                    {...d, address: `${d.streetaddress}, ${d.postcode} ${d.city}`}
+                    )
+                )
+            setCustomers(dataWithFullAddress)
         })
         .catch(err => console.error(err))
     }
-
-    console.log(customers)
 
     useEffect(() => {
         getCustomers();
@@ -48,11 +50,12 @@ export default function Customers() {
     return(
         <>
             <div>
-                <h1>This is the customers list page</h1>
+                <h1>Customers list</h1>
                 <div className='ag-theme-material' style={{width: '90%', height: 600, margin: 'auto'}}>
                     <AgGridReact 
                         rowData={customers}
                         columnDefs={columnDefs}
+                        animateRows= {true}
                         pagination={true}
                         paginationPageSize={10}
                     />
