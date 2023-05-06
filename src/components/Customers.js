@@ -4,6 +4,7 @@ import { API_URL } from '../constants.js';
 import AddCustomer from './AddCustomer.js';
 import EditCustomer from './EditCustomer.js';
 import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import 'ag-grid-community/styles/ag-grid.css';
@@ -14,6 +15,10 @@ export default function Customers() {
 
     // Customers state
     const [customers, setCustomers] = useState([]);
+
+    // Snackbar openening/closing and message states
+    const [open, setOpen] = useState(false);
+    const [msg, setMsg] = useState('');
 
     // AG-Grid columns defined
     const [columnDefs] = useState([
@@ -71,8 +76,11 @@ export default function Customers() {
             body: JSON.stringify(customer) //change the JS object to json type
         })
         .then(response => {
-            if (response.ok) 
+            if (response.ok) {
+                setMsg('Customer added successfully')
+                setOpen(true)
                 getCustomers();
+            }
             else
                 alert('Something went wrong. Status: ' + response.statusText)
         })
@@ -88,6 +96,8 @@ export default function Customers() {
         })
         .then(response => {
             if (response.ok) {
+                setMsg('Customer edited correctly')
+                setOpen(true)
                 getCustomers()
             }
             else
@@ -103,6 +113,8 @@ export default function Customers() {
             .then(
                 response => {
                     if (response.ok) {
+                        setMsg('Customer deleted')
+                        setOpen(true)
                         getCustomers();
                     } else {
                         alert('Something went wrong during deletion')
@@ -129,6 +141,12 @@ export default function Customers() {
                         animateRows= {true}
                         pagination={true}
                         paginationPageSize={10}
+                    />
+                    <Snackbar 
+                        open={open}
+                        message={msg}
+                        autoHideDuration={3000}
+                        onClose={() => setOpen(false)}
                     />
                 </div>
             </div>

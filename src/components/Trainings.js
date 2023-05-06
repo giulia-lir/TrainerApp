@@ -14,11 +14,11 @@ export default function Trainings() {
 
     // AG-Grid columns defined
     const [columnDefs] = useState([
-        {field: 'date', valueFormatter: (params) => dayjs(params.value).format('DD.MM.YYYY - HH:MM'), sortable: true, filter: true},
-        {field: 'duration', sortable: true, filter: true},
-        {field: 'activity', sortable: true, filter: true},
-        {field:'customer.firstname', headerName: 'Firstname', sortable:true, filter: true},
-        {field:'customer.lastname', headerName: 'Lastname', sortable:true, filter: true},
+        {field: 'date', valueFormatter: (params) => dayjs(params.value).format('DD.MM.YYYY - HH:MM'), sortable: true, filter: true, flex: 1.2},
+        {field: 'duration', sortable: true, filter: true, flex: 1},
+        {field: 'activity', sortable: true, filter: true, flex: 1},
+        {field:'customer.firstname', headerName: 'Firstname', sortable:true, filter: true, flex: 1},
+        {field:'customer.lastname', headerName: 'Lastname', sortable:true, filter: true, flex: 1},
     ]);
 
     // Fetching trainings data & error handling
@@ -54,6 +54,8 @@ export default function Trainings() {
                         animateRows= {true}
                         pagination={true}
                         paginationPageSize={10}
+                        headerClass="center-align"
+                        cellStyle={{ textAlign: "left" }}
                     />
                 </div>
             </div>
