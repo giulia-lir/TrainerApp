@@ -34,7 +34,6 @@ function App() {
         >
           Customers
         </NavLink>{' '}
-
         <NavLink
         to="/trainings"
         style={props => getNavLinkStyle(props.isActive)}
