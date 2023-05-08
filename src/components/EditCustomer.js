@@ -45,7 +45,9 @@ export default function EditCustomer(props){
 
     return (
         <div>
-            <Button size="small" onClick={handleClickEdit}><BorderColorIcon /></Button>
+            <Button size="small" onClick={handleClickEdit}>
+                <BorderColorIcon />
+            </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Edit Customer</DialogTitle>
                 <DialogContent>

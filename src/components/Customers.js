@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import { API_URL } from '../constants.js';
+import { API_URL, Trainings_URL } from '../constants.js';
 import AddCustomer from './AddCustomer.js';
 import EditCustomer from './EditCustomer.js';
+import AddTraining from './AddTraining.js';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
+
+// Mui Icons
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import 'ag-grid-community/styles/ag-grid.css';
@@ -32,11 +35,24 @@ export default function Customers() {
                 >
                     <DeleteIcon size={1} />
                 </Button>,
-                width: 80
+                width: 70
         },
         // Edit button render with external component
         {
-            cellRenderer: params => <EditCustomer params={params.data} updateCustomer={updateCustomer} />
+            cellRenderer: params => 
+                <EditCustomer
+                    params={params.data}
+                    updateCustomer={updateCustomer} 
+                />,
+            width: 70
+        },
+        {
+            cellRenderer: params =>
+                <AddTraining 
+                    saveTraining={saveTraining} 
+                    params={params.data}
+                />, 
+            width:70
         },
         {field: 'firstname', headerName: 'Firstname', sortable: true, filter: true},
         {field: 'lastname', headerName: 'Lastname', sortable: true, filter: true},
@@ -123,6 +139,19 @@ export default function Customers() {
             )
             .catch(err=> console.log(err))
         }
+    }
+
+    const saveTraining=(training)=>{
+        fetch(Trainings_URL,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(training)
+        }
+        )
+        .then(response => getCustomers())
+        .catch(err =>console.error(err))
     }
 
     useEffect(() => {

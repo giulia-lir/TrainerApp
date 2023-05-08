@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -6,6 +6,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
+// MUI Icons
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+
+// *** ADD NEW CUSTOMER DIALOG ***
 export default function AddCustomer( { addCustomer }) {
 
     const [open, setOpen] = React.useState(false);
@@ -46,8 +50,8 @@ export default function AddCustomer( { addCustomer }) {
 
     return(
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                Add New Customer
+            <Button variant="outlined" onClick={handleClickOpen} startIcon={<PersonAddAlt1Icon />} color="success">
+                Add Customer
             </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>New Customer</DialogTitle>
