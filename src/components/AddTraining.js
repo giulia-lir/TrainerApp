@@ -33,7 +33,7 @@ export default function AddTraining(props) {
 
     // Open dialog and set selected customer's firstname and lastname
     const handleClickOpen = () => {
-    setOpen(true);
+        setOpen(true);
 
         // Get selected customer's firstname and lastname in form 
         setCustomer({
@@ -75,7 +75,7 @@ export default function AddTraining(props) {
     return (
     <div>
         <Button color="primary" onClick={handleClickOpen}>
-            <PlaylistAddIcon />
+            <PlaylistAddIcon style={{ color: "#57B90D" }} />
         </Button>
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>New Training</DialogTitle>

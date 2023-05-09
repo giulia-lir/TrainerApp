@@ -50,7 +50,17 @@ export default function AddCustomer( { addCustomer }) {
 
     return(
         <div>
-            <Button variant="outlined" onClick={handleClickOpen} startIcon={<PersonAddAlt1Icon />} color="success">
+            <Button
+                variant="contained"
+                onClick={handleClickOpen}
+                startIcon={<PersonAddAlt1Icon />}
+                className="add-customer-button"
+                style={{ 
+                    backgroundColor: "#ABEC79",
+                    color: "#000000",
+                    marginBottom: '5px' 
+                    }} 
+                >
                 Add Customer
             </Button>
             <Dialog open={open} onClose={handleClose}>

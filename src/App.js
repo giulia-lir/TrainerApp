@@ -14,9 +14,10 @@ function App() {
   function getNavLinkStyle(isActive) {
     return {
       fontWeight: isActive ? "bold" : "",
-      color: isActive ? "#ff6347" : "#333",
+      color: 'white',
       textDecoration: "none",
       padding: "0.5rem",
+      paddingTop: '120px',
       margin: "0 0.5rem",
       fontSize: "1rem",
       transition: "all 0.2s",
@@ -24,28 +25,39 @@ function App() {
     };
   }
 
+  
+  
+
   //Return React render
   return (
     <div className="App">
-      <BrowserRouter>
-        <NavLink
-          to="/"
-          style={props => getNavLinkStyle(props.isActive)}
-        >
-          Customers
-        </NavLink>{' '}
-        <NavLink
-        to="/trainings"
-        style={props => getNavLinkStyle(props.isActive)}
-        >
-          Trainings
-        </NavLink>{' '}
-        
-        <Routes>
-          <Route exact path="/" element={<Customers />} />
-          <Route path="/trainings" element={<Trainings />} />
-        </Routes>
-      </BrowserRouter>
+      <div className="appContainerStyle">
+        <BrowserRouter>
+        <div className="navBarContainerStyle">
+            <NavLink
+              to="/"
+              className="sticky-nav"
+              style={props => getNavLinkStyle(props.isActive)}
+            >
+              Customers
+            </NavLink>{' '}
+            <NavLink
+            to="/trainings"
+            className="sticky-nav"
+            style={props => getNavLinkStyle(props.isActive)}
+            >
+              Trainings
+            </NavLink>{' '}
+        </div>
+          
+        <div className="contentContainerStyle">
+          <Routes>
+            <Route exact path="/" element={<Customers />} />
+            <Route path="/trainings" element={<Trainings />} />
+          </Routes>
+        </div>
+        </BrowserRouter>
+        </div>
     </div>
   );
 }

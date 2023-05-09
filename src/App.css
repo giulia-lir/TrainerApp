@@ -41,3 +41,30 @@
   justify-content: center;
 }
 
+/* Application color and style */
+.appContainerStyle {
+  top: 0;
+  width: '100%';
+  background-color: #f5c0a3
+}
+
+/* NavBar style */
+.navBarContainerStyle {
+  padding-top: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #125186;
+  z-index: 1;
+}
+
+/* App Content style */
+.contentContainerStyle {
+  margin-top: 50px;
+  padding-top: 5px;
+}
+
+.add-customer-button:hover {
+  background-color: #409201;
+}

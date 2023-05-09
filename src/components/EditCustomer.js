@@ -21,6 +21,7 @@ export default function EditCustomer(props){
         phone:''
     })
 
+    // Open form with existing data as props
     const handleClickEdit = () => {
         setCustomer({
             firstname: props.params.firstname, 
@@ -38,6 +39,7 @@ export default function EditCustomer(props){
         setOpen(false);
     }
 
+    // Pass updated customer data to update function to save and close dialog
     const editCustomer = ()=>{
         props.updateCustomer(customer,props.params.links[0].href);
         handleClose();
@@ -46,7 +48,7 @@ export default function EditCustomer(props){
     return (
         <div>
             <Button size="small" onClick={handleClickEdit}>
-                <BorderColorIcon />
+                <BorderColorIcon style={{ color: "#125186" }} />
             </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Edit Customer</DialogTitle>
