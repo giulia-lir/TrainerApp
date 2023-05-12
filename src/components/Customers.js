@@ -1,17 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { API_URL, Trainings_URL } from '../constants.js';
 import AddCustomer from './AddCustomer.js';
 import EditCustomer from './EditCustomer.js';
 import AddTraining from './AddTraining.js';
+
+// Mui Components
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 
 // Mui Icons
 import DeleteIcon from '@mui/icons-material/Delete';
+import DownloadIcon from '@mui/icons-material/Download';
 
+// AG-Grid imports
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
+
+// CSV export functionalities
+import { ModuleRegistry } from '@ag-grid-community/core';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
+import { CsvExportModule } from '@ag-grid-community/csv-export';
 
 // *** CUSTOMERS LIST PAGE ***
 export default function Customers() {
@@ -141,6 +150,7 @@ export default function Customers() {
         }
     }
 
+    // POST request to save new training tied to customers
     const saveTraining=(training)=>{
         fetch(Trainings_URL,{
             method: 'POST',
@@ -154,6 +164,21 @@ export default function Customers() {
         .catch(err =>console.error(err))
     }
 
+    const gridRef = useRef();
+
+    // Export function to export Customers Ag-Grid into CSV file
+    function exportCCSV() {
+        // Check if the gridRef is defined and has an "api" property
+        if (gridRef.current && gridRef.current.api) {
+            const params = {
+              suppressQuotes: true, // Avoid wrapping values in quotes
+              fileName: 'customers.csv', // Set file name on download
+              columnSeparator: ';'
+            };
+            gridRef.current.api.exportDataAsCsv(params);
+          }
+    }
+
     useEffect(() => {
         getCustomers();
     }, [])
@@ -163,6 +188,15 @@ export default function Customers() {
             <div>
                 <h1>Customers list</h1>
                 <AddCustomer addCustomer={addCustomer} />
+                <Button 
+                    style={{
+                        margin:10,
+                        padding:10}} 
+                    variant="contained" 
+                    color='primary' 
+                    onClick={() => exportCCSV()}>
+                    <DownloadIcon /> CSV file
+                </Button>
                 <div className='ag-theme-material' style={{width: '90%', height: 600, margin: 'auto'}}>
                     <AgGridReact 
                         rowData={customers}
@@ -170,6 +204,7 @@ export default function Customers() {
                         animateRows= {true}
                         pagination={true}
                         paginationPageSize={10}
+                        ref={gridRef}
                     />
                     <Snackbar 
                         open={open}

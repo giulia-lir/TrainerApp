@@ -21,11 +21,6 @@ export default function Trainings() {
 
     // AG-Grid columns defined
     const [columnDefs] = useState([
-        {field: 'date', valueFormatter: (params) => dayjs(params.value).format('DD.MM.YYYY'), sortable: true, filter: true, flex: 1.2},
-        {field: 'duration', sortable: true, filter: true, flex: 1},
-        {field: 'activity', sortable: true, filter: true, flex: 1},
-        {field: 'customer.firstname', headerName: 'Firstname', sortable:true, filter: true, flex: 1},
-        {field: 'customer.lastname', headerName: 'Lastname', sortable:true, filter: true, flex: 1},
         {cellRenderer: params=>
             <Button 
                 color='error'
@@ -34,7 +29,12 @@ export default function Trainings() {
                <DeleteIcon size={1}/>
                 </Button>,
             width:80
-        }
+        },
+        {field: 'date', valueFormatter: (params) => dayjs(params.value).format('DD.MM.YYYY'), sortable: true, filter: true},
+        {field: 'duration', sortable: true, filter: true},
+        {field: 'activity', sortable: true, filter: true},
+        {field: 'customer.firstname', headerName: 'Firstname', sortable:true, filter: true},
+        {field: 'customer.lastname', headerName: 'Lastname', sortable:true, filter: true}
     ]);
 
     // Fetching trainings data & error handling
