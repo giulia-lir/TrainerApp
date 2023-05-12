@@ -65,6 +65,12 @@
   padding-top: 5px;
 }
 
-.add-customer-button:hover {
-  background-color: #409201;
+@media (max-width: 600px) {
+  .fc-toolbar-title {
+      font-size: small !important
+  }
+
+  .fc-button {
+    font-size: small !important; 
+  }
 }

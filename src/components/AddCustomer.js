@@ -58,7 +58,8 @@ export default function AddCustomer( { addCustomer }) {
                 style={{ 
                     backgroundColor: "#ABEC79",
                     color: "#000000",
-                    marginBottom: '5px' 
+                    margin: 10,
+                    padding: 10
                     }} 
                 >
                 Add Customer

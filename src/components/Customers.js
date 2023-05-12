@@ -17,11 +17,6 @@ import DownloadIcon from '@mui/icons-material/Download';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
 
-// CSV export functionalities
-import { ModuleRegistry } from '@ag-grid-community/core';
-import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
-import { CsvExportModule } from '@ag-grid-community/csv-export';
-
 // *** CUSTOMERS LIST PAGE ***
 export default function Customers() {
 
@@ -187,16 +182,18 @@ export default function Customers() {
         <>
             <div>
                 <h1>Customers list</h1>
-                <AddCustomer addCustomer={addCustomer} />
-                <Button 
-                    style={{
-                        margin:10,
-                        padding:10}} 
-                    variant="contained" 
-                    color='primary' 
-                    onClick={() => exportCCSV()}>
-                    <DownloadIcon /> CSV file
-                </Button>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
+                    <AddCustomer addCustomer={addCustomer} style={{ margin:10, padding:10 }} />
+                    <Button 
+                        style={{
+                            margin:10,
+                            padding:10}} 
+                        variant="contained" 
+                        color='primary' 
+                        onClick={() => exportCCSV()}>
+                        <DownloadIcon style={{marginRight: 3}} /> CSV file
+                    </Button>
+                </div>
                 <div className='ag-theme-material' style={{width: '90%', height: 600, margin: 'auto'}}>
                     <AgGridReact 
                         rowData={customers}
