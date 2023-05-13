@@ -59,28 +59,28 @@ function App() {
         <BrowserRouter>
         <div className="navBarContainerStyle">
             <NavLink
-              to="/"
+              to="/TrainerApp/"
               className="sticky-nav"
               style={props => getNavLinkStyle(props.isActive)}
             >
               {isSmallScreen ? <PeopleOutlineIcon fontSize='medium' style={{color: "white"}} /> : 'Customers'}
             </NavLink>{' '}
             <NavLink
-            to="/trainings"
+            to="/TrainerApp/trainings"
             className="sticky-nav"
             style={props => getNavLinkStyle(props.isActive)}
             >
               {isSmallScreen ? <FitnessCenterIcon fontSize='medium' style={{color: "#white"}} /> : 'Trainings'}
             </NavLink>{' '}
             <NavLink
-            to="/calendar"
+            to="/TrainerApp/calendar"
             className="sticky-nav"
             style={props => getNavLinkStyle(props.isActive)}
             >
               {isSmallScreen ? <CalendarMonthIcon fontSize='medium' style={{color: "#white"}} /> : 'Calendar'}
             </NavLink>{' '}
             <NavLink
-            to="/statistics"
+            to="/TrainerApp/statistics"
             className="sticky-nav"
             style={props => getNavLinkStyle(props.isActive)}
             >
@@ -90,10 +90,10 @@ function App() {
           
         <div className="contentContainerStyle">
           <Routes>
-            <Route exact path="/" element={<Customers />} />
-            <Route path="/trainings" element={<Trainings />} />
-            <Route path="/calendar" element={<Calendar />} />
-            <Route path="/statistics" element={<Statistics />} />
+            <Route exact path="/TrainerApp/" element={<Customers />} />
+            <Route path="/TrainerApp/trainings" element={<Trainings />} />
+            <Route path="/TrainerApp/calendar" element={<Calendar />} />
+            <Route path="/TrainerApp/statistics" element={<Statistics />} />
           </Routes>
         </div>
         </BrowserRouter>
